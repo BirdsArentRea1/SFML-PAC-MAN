@@ -8,7 +8,7 @@ public:
 	Level();
 	void loadlevel();
 	void draw(RenderWindow& window);
-		
+
 private:
 	std::vector<RectangleShape> walls;
 	const int tileSize = 32;
