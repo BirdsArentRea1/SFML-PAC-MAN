@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Player.h"
-using namespace sf;
+#include "level.h"
+using namespace std;
 
 void handleInput(Player& player, float deltatime) {
     float speed = 200.0f; //200 pixels per second
@@ -10,10 +11,12 @@ void handleInput(Player& player, float deltatime) {
     if (Keyboard::isKeyPressed(Keyboard::Down)) player.move(0, 1);
 }
 
+
 int main() {
     RenderWindow window(VideoMode(800, 600), "PACMAN Game");
     Player player;
     Clock clock;
+    Level level;
 
     while (window.isOpen()) {
         float deltatime = clock.restart().asSeconds();
@@ -28,6 +31,8 @@ int main() {
         window.clear();
 
         player.draw(window);
+
+        level.draw(window);
 
         window.display();
     }
