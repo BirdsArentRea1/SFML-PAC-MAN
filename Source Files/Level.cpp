@@ -12,7 +12,7 @@ void Level::draw(RenderWindow& window) {
 	}
 }
 
-void Level::loadlevel() {
+void Level::loadlevel() {                                           //resize 18x18
 	int levelData[25][25] = {
 		{1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1},
 		{1, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 1},
