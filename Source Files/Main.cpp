@@ -13,7 +13,7 @@ void handleInput(Player& player, float deltatime) {
 
 
 int main() {
-    RenderWindow window(VideoMode(600, 700), "PACMAN Game");
+    RenderWindow window(VideoMode(600, 800), "PACMAN Game");
     Player player;
     Clock clock;
     Level level;
