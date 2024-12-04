@@ -12,5 +12,7 @@ public:
 private:
 	std::vector<RectangleShape> walls;
 	const int tileSize = 32;
+	std::vector<RectangleShape> pellets;
+	const int pelletsize = 8;
 
 };
