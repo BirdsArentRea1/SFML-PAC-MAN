@@ -30,9 +30,9 @@ int main() {
 
         window.clear();
 
-        player.draw(window);
-
         level.draw(window);
+
+        player.draw(window);
 
         window.display();
     }
