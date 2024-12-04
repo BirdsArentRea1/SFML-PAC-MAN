@@ -4,16 +4,16 @@
 using namespace std;
 
 void handleInput(Player& player, float deltatime) {
-    float speed = 200.0f; //200 pixels per second
-    if (Keyboard::isKeyPressed(Keyboard::Left)) player.move(-1, 0);
-    if (Keyboard::isKeyPressed(Keyboard::Right)) player.move(1, 0);
-    if (Keyboard::isKeyPressed(Keyboard::Up)) player.move(0, -1);
-    if (Keyboard::isKeyPressed(Keyboard::Down)) player.move(0, 1);
+float speed = 200;
+if (Keyboard::isKeyPressed(Keyboard::Left)) player.move(-1, 0);
+if (Keyboard::isKeyPressed(Keyboard::Right)) player.move(1, 0);
+if (Keyboard::isKeyPressed(Keyboard::Up)) player.move(0, -1);
+if (Keyboard::isKeyPressed(Keyboard::Down)) player.move(0, 1);
 }
 
 
 int main() {
-    RenderWindow window(VideoMode(600, 800), "PACMAN Game");
+    RenderWindow window(VideoMode(600, 830), "PACMAN Game");
     Player player;
     Clock clock;
     Level level;
