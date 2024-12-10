@@ -4,8 +4,8 @@
 using namespace std;
 
 int main() {
-    RenderWindow window(VideoMode(600, 830), "PACMAN Game");
-    Player player(150,250 );
+    RenderWindow window(VideoMode(760, 1100), "PACMAN");
+    Player player(370,730);
     Clock clock;
     Level level;
 
