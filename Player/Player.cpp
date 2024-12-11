@@ -27,9 +27,15 @@ void Player::update(float deltaTime, const Level& level) {
 	enum DIRECTIONS { RIGHT, LEFT, UP, DOWN, STOP };
 	int direction = STOP;
 
-	if (vy < 0) direction = UP; else if (vy > 0) direction = DOWN; else direction = STOP;
+	if (vy < 0) direction = UP;
+	else if (vy > 0) direction = DOWN;
+	else if (vx < 0) direction = LEFT;
+	else if (vx > 0) direction = RIGHT;
+	else direction = STOP;
 
-	//check for vertical collision
+	//cout << "direction is " << direction << endl;
+
+	//vertical collision
 	if (direction == DOWN) {
 		if (level.getTileValue(static_cast<int>((y + 30) / 40), static_cast<int>(x / 40)) == 0)
 			y += vy * deltaTime;
@@ -38,6 +44,7 @@ void Player::update(float deltaTime, const Level& level) {
 		else
 			cout << "down collision!" << endl;
 	}
+
 	else if (direction == UP) {
 		if (level.getTileValue(static_cast<int>((y - 10) / 40), static_cast<int>(x / 40)) == 0)
 			y += vy * deltaTime;
@@ -46,9 +53,23 @@ void Player::update(float deltaTime, const Level& level) {
 		else
 			cout << "up collision!" << endl;
 	}
-
-	//add horizontal collision here
-	x += vx * deltaTime;
+	//horizontal collision
+	if (direction == LEFT) {
+		if (level.getTileValue(static_cast<int>((y) / 40), static_cast<int>((x - 10) / 40)) == 0)
+			x += vx * deltaTime;
+		else if (level.getTileValue(static_cast<int>(y / 40), static_cast<int>((x - 10 ) / 40)) == 2)
+			x += vx * deltaTime;
+		else
+			cout << "left collision!" << endl;
+	}
+	if (direction == RIGHT) {
+		if (level.getTileValue(static_cast<int>((y) / 40), static_cast<int>((x + 30) / 40)) == 0)
+			x += vx * deltaTime;
+		else if (level.getTileValue(static_cast<int>(y / 40), static_cast<int>((x + 30) / 40)) == 2)
+			x += vx * deltaTime;
+		else
+			cout << "right collision!" << endl;
+	}
 
 }
 
