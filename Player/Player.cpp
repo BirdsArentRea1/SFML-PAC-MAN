@@ -33,11 +33,15 @@ void Player::update(float deltaTime, const Level& level) {
 	if (direction == DOWN) {
 		if (level.getTileValue(static_cast<int>((y + 30) / 40), static_cast<int>(x / 40)) == 0)
 			y += vy * deltaTime;
+		else if (level.getTileValue(static_cast<int>((y + 30) / 40), static_cast<int>(x / 40)) == 2)
+			y += vy * deltaTime;
 		else
 			cout << "down collision!" << endl;
 	}
 	else if (direction == UP) {
 		if (level.getTileValue(static_cast<int>((y - 10) / 40), static_cast<int>(x / 40)) == 0)
+			y += vy * deltaTime;
+		else if (level.getTileValue(static_cast<int>((y - 10) / 40), static_cast<int>(x / 40)) == 2)
 			y += vy * deltaTime;
 		else
 			cout << "up collision!" << endl;
