@@ -5,8 +5,9 @@ using namespace sf;
 class Level {
 private:
 	static const int ROWS = 26;
-		static const int COLS = 19;
+	static const int COLS = 19;
 	float tileSize = 40;
+	float pelletSize = 10;
 	int layout[ROWS][COLS] = {
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
 		{0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -41,4 +42,5 @@ private:
 public:
 	void draw(RenderWindow& window);
 	int getTileValue(int row, int col) const;
-	};
+	void removePellet(int row, int col);
+};
