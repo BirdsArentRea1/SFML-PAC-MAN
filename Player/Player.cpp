@@ -4,34 +4,41 @@
 using namespace std;
 
 Player::Player(float startX, float startY) {
-	x = startX;
-	y = startY;
-	vx = 0;
-	vy = 0;
-	speed = 200;
-	size = 15;
+    x = startX;
+    y = startY;
+    vx = 0;
+    vy = 0;
+    speed = 200;
+    size = 15;
 }
 
 void Player::handleInput() {
-	vx = 0;
-	vy = 0;
+    vx = 0;
+    vy = 0;
 
-	if (Keyboard::isKeyPressed(Keyboard::W)) { vy = -speed; }
-	if (Keyboard::isKeyPressed(Keyboard::S)) { vy = speed; }
-	if (Keyboard::isKeyPressed(Keyboard::A)) { vx = -speed; }
-	if (Keyboard::isKeyPressed(Keyboard::D)) { vx = speed; }
+    if (Keyboard::isKeyPressed(Keyboard::W)) { vy = -speed; }
+    if (Keyboard::isKeyPressed(Keyboard::S)) { vy = speed; }
+    if (Keyboard::isKeyPressed(Keyboard::A)) { vx = -speed; }
+    if (Keyboard::isKeyPressed(Keyboard::D)) { vx = speed; }
 }
 
-void Player::update(float deltaTime, const Level& level) {
+void Player::update(float deltaTime, Level& level) {
+    enum DIRECTIONS { RIGHT, LEFT, UP, DOWN, STOP };
+    int direction = STOP;
 
-	enum DIRECTIONS { RIGHT, LEFT, UP, DOWN, STOP };
-	int direction = STOP;
+    if (vy < 0) direction = UP;
+    else if (vy > 0) direction = DOWN;
+    else if (vx < 0) direction = LEFT;
+    else if (vx > 0) direction = RIGHT;
+    else direction = STOP;
 
-	if (vy < 0) direction = UP;
-	else if (vy > 0) direction = DOWN;
-	else if (vx < 0) direction = LEFT;
-	else if (vx > 0) direction = RIGHT;
-	else direction = STOP;
+    int playerRow = static_cast<int>(y / 40);
+    int playerCol = static_cast<int>(x / 40);
+
+    if (level.getTileValue(playerRow, playerCol) == 2) {
+        cout << "Eating pellet at (" << playerRow << ", " << playerCol << ")\n";
+        level.removePellet(playerRow, playerCol);
+    }
 
 	//cout << "direction is " << direction << endl;
 
@@ -57,7 +64,7 @@ void Player::update(float deltaTime, const Level& level) {
 	if (direction == LEFT) {
 		if (level.getTileValue(static_cast<int>((y) / 40), static_cast<int>((x - 10) / 40)) == 0)
 			x += vx * deltaTime;
-		else if (level.getTileValue(static_cast<int>(y / 40), static_cast<int>((x - 10 ) / 40)) == 2)
+		else if (level.getTileValue(static_cast<int>(y / 40), static_cast<int>((x - 10) / 40)) == 2)
 			x += vx * deltaTime;
 		else
 			cout << "left collision!" << endl;
@@ -73,9 +80,10 @@ void Player::update(float deltaTime, const Level& level) {
 
 }
 
+
 void Player::draw(RenderWindow& window) {
-	CircleShape circle(size);
-	circle.setFillColor(Color::Yellow);
-	circle.setPosition(x, y);
-	window.draw(circle);
+    CircleShape circle(size);
+    circle.setFillColor(Color::Yellow);
+    circle.setPosition(x, y);
+    window.draw(circle);
 }
