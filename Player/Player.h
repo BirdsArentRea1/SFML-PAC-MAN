@@ -13,10 +13,8 @@ private:
     float size;
 
 public:
-
     Player(float startX, float startY);
     void handleInput();
-    void update(float deltaTime, const Level& level);
+    void update(float deltaTime, Level& level);
     void draw(RenderWindow& window);
-
 };
